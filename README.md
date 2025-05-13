@@ -1,4 +1,4 @@
-# 🛡️ Cloud runner 🏃‍♂️‍➡️ Just another VPS Setup Tool
+# 🏃‍♂️‍➡️ Cloud Runner Just Another VPS Setup Tool
 
 This project provides a **modular**, **interactive**, and **secure** way to set up and harden a fresh Linux VPS (Ubuntu/Debian-based). It guides you through critical configuration steps using a terminal-based wizard and then installs and configures essential packages and security practices.
 
@@ -17,15 +17,17 @@ This project provides a **modular**, **interactive**, and **secure** way to set 
 bash <(curl -sSL https://raw.githubusercontent.com/morellovich/cloud-runner/main/install.sh)
 ```
 
-## ⚠️**Attention!**
+## ⚠️ **Attention!**
 
-Before proceeding with the initialization you have to **generate a SSH key pair** 🔐and store them safely on your client, if not, this setup **will block you out of your server!**
+Before proceeding with the initialization you have to **generate a SSH key pair** 🔐 and store them safely on your client, if not, this setup **will block you out of your server!**
 
 Follow [this guide](https://www.bluehost.com/help/article/generate-ssh-keys) for more.
 
 
 # 🧩 What's Installed and Configured
+
 ## 🔐 Security & Hardening ## 
+
 
 | Feature                 | Description                                                             |
 | ----------------------- | ----------------------------------------------------------------------- |
@@ -57,7 +59,7 @@ Default cloud-init VPS (Hetzner, DigitalOcean, Linode, etc.)
 Want to add your own module?
 Create scripts/13-my-feature.sh
 Add it to the list in install.sh checklist
-Source setup.conf inside your script and go wild
+Source setup.conf inside your script and go wild!
 
 ## 🤝 Contribution ##
 Feel free to suggest changes, report [issues](https://github.com/morellovich/cloud-runner/issues) and send your [PRs](https://github.com/morellovich/cloud-runner/pulls).
