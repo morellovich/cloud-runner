@@ -31,7 +31,7 @@ timedatectl set-timezone "$TIMEZONE"
 LAYOUT=$(whiptail --title "Keyboard Layout" --inputbox "Enter your keyboard layout code (e.g., de, us, fr):" 10 60 "us" 3>&1 1>&2 2>&3)
 
 # 5. SSH key warning
-whiptail --title "SSH Key Setup" --msgbox "We highly recommend creating a secure SSH keypair on your local machine FIRST.\n\nPlease follow the instructions at: https://yourdomain.com/docs/ssh\n\nThen paste your PUBLIC key (usually found at ~/.ssh/id_ed25519.pub)." 15 60
+whiptail --title "SSH Key Setup" --msgbox "We highly recommend creating a secure SSH keypair on your local machine FIRST. If you didn't configure it right now this setup might block you from accessing your server!!! \n\nPlease follow the instructions at: https://www.bluehost.com/help/article/generate-ssh-keys\n\nThen paste your PUBLIC key (usually found at ~/.ssh/id_ed25519.pub)." 15 60
 
 SSH_KEY=$(whiptail --inputbox "Paste your PUBLIC SSH key:" 10 80 3>&1 1>&2 2>&3)
 echo "$SSH_KEY" > /tmp/public_key.pub
