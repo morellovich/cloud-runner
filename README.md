@@ -17,6 +17,13 @@ This project provides a **modular**, **interactive**, and **secure** way to set 
 bash <(curl -sSL https://raw.githubusercontent.com/morellovich/cloud-runner/main/install.sh)
 ```
 
+## ⚠️**Attention!**
+
+Before proceeding with the initialization you have to **generate a SSH key pair** 🔐and store them safely on your client, if not, this setup **will block you out of your server!**
+
+Follow [this guide](https://www.bluehost.com/help/article/generate-ssh-keys) for more.
+
+
 # 🧩 What's Installed and Configured
 ## 🔐 Security & Hardening ## 
 
@@ -52,7 +59,7 @@ Create scripts/13-my-feature.sh
 Add it to the list in install.sh checklist
 Source setup.conf inside your script and go wild
 
-## 🤝contribution ##
+## 🤝 Contribution ##
 Feel free to suggest changes, report [issues](https://github.com/morellovich/cloud-runner/issues) and send your [PRs](https://github.com/morellovich/cloud-runner/pulls).
 
 **All scripts receive the config path as an argument and log their output.**
