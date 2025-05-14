@@ -13,8 +13,8 @@ This project provides a **modular**, **interactive**, and **secure** way to set 
 
 ## 🚀 Quick Start (One-liner Install)
 
-```bash
-bash <(curl -sSL https://raw.githubusercontent.com/morellovich/cloud-runner/main/install.sh)
+```shell
+curl -sSL https://raw.githubusercontent.com/morellovich/cloud-runner/main/install.sh
 ```
 
 ## ⚠️ **Attention!**
