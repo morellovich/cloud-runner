@@ -9,7 +9,6 @@ echo "Starting VPS setup at $(date)"
 # 1. Ask for hostname
 HOSTNAME=$(whiptail --inputbox "Enter a name for your server (hostname):" 10 60 --title "Server Setup" 3>&1 1>&2 2>&3)
 sudo hostnamectl set-hostname "$HOSTNAME"
-
 # 2. Ask for username
 USERNAME=$(whiptail --inputbox "Enter the name of the non-root user to be created:" 10 60 "vpsadmin" 3>&1 1>&2 2>&3)
 
@@ -25,10 +24,28 @@ if [[ "$TIMEZONE" == "Custom" ]]; then
     TIMEZONE=$(whiptail --inputbox "Enter your desired timezone (e.g., Europe/Lisbon):" 10 60 3>&1 1>&2 2>&3)
 fi
 
-timedatectl set-timezone "$TIMEZONE"
+# Set timezone safely
+echo "Setting timezone to $TIMEZONE"
+sudo timedatectl set-timezone "$TIMEZONE" || echo "Failed to set timezone. Please check if '$TIMEZONE' is valid."
+
+# 3a. Configure locales
+if whiptail --title "Configure Locales" --yesno "Would you like to configure system locales now?" 10 60; then
+    echo "Running locale configuration..."
+    sudo dpkg-reconfigure locales
+fi
 
 # 4. Keyboard layout
 LAYOUT=$(whiptail --title "Keyboard Layout" --inputbox "Enter your keyboard layout code (e.g., de, us, fr):" 10 60 "us" 3>&1 1>&2 2>&3)
+
+# Configure keyboard layout
+echo "Setting keyboard layout to $LAYOUT"
+if command -v localectl &>/dev/null; then
+    sudo localectl set-keymap "$LAYOUT" || echo "Failed to set keyboard layout. Please check if '$LAYOUT' is valid."
+else
+    echo "localectl not found. Trying alternative method..."
+    sudo sed -i "s/XKBLAYOUT=.*/XKBLAYOUT=\"$LAYOUT\"/" /etc/default/keyboard
+    sudo dpkg-reconfigure -f noninteractive keyboard-configuration
+fi
 
 # 5. SSH key warning
 whiptail --title "SSH Key Setup" --msgbox "We highly recommend creating a secure SSH keypair on your local machine FIRST. If you didn't configure it right now this setup might block you from accessing your server!!! \n\nPlease follow the instructions at: https://www.bluehost.com/help/article/generate-ssh-keys\n\nThen paste your PUBLIC key (usually found at ~/.ssh/id_ed25519.pub)." 15 60
